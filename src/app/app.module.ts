@@ -5,7 +5,6 @@ import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-br
 import { AppRoutingModule } from './app.routes.module';
 import { AppComponent } from './app.component';
 import { EmptyPage } from './components/empty-route/empty-route.component';
-import { MainModule } from './components/main/main.module';
 
 @NgModule({
   declarations: [
@@ -14,8 +13,7 @@ import { MainModule } from './components/main/main.module';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    AppRoutingModule,
-    MainModule
+    AppRoutingModule
   ],
   providers: [],
 
