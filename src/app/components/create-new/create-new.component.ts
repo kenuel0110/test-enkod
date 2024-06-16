@@ -1,12 +1,10 @@
+import { initializeApp } from '@angular/fire/app';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { AngularFireModule } from '@angular/fire';
-import { AngularFireDatabaseModule } from '@angular/fire/database';
-
-import { environment } from'../../../environments/environment';
+import { Database, getDatabase, ref, child, get, set } from "firebase/database";
 
 interface City {
   title: string;
@@ -18,9 +16,7 @@ interface City {
 @Component({
   selector: 'app-create-new',
   standalone: true,
-  imports: [FormsModule, CommonModule, ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabaseModule
+  imports: [FormsModule, CommonModule, ReactiveFormsModule
   ],
   templateUrl: './create-new.component.html',
   styleUrls: ['./create-new.component.css']
@@ -31,7 +27,7 @@ export class CreateNewComponent {
   cityLink: string = '';
   form: FormGroup;
 
-  constructor(private db: AngularFireDatabase, private router: Router, private formBuilder: FormBuilder) {
+  constructor(private db: Database, private router: Router, private formBuilder: FormBuilder) {
     this.form = this.formBuilder.group({
       cityTitle: ['', Validators.required],
       cityDescription: ['', Validators.required],
@@ -51,7 +47,18 @@ export class CreateNewComponent {
       console.log(city);
       if (city != null)
         {
-          this.router.navigate(['/']);
+          get(child(ref(getDatabase()), `cities`)).then((snapshot) => {
+            if (snapshot.exists()) {
+              console.log(snapshot.val());
+              set(ref(this.db, 'cities/' + snapshot.size), city);
+              alert("Город добавлен");
+            } else {
+              console.log("Данные не найдены");
+            }
+          }).catch((error) => {
+            console.error(error);
+            alert(error);
+          });
         }
     }
   }
