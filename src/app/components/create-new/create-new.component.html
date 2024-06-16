@@ -20,21 +20,21 @@
       <label for="cityTitle">Название города</label>
       <input type="text" formControlName="cityTitle" required>
       <div class="error-div" *ngIf="form.get('cityTitle')?.invalid && form.get('cityTitle')?.touched">
-        Название города не может быть пустым!
+        *Заполните поле
       </div>
     </div>
     <div class="div-description">
       <label for="cityDescription">Описание города</label>
       <textarea formControlName="cityDescription" required></textarea>
       <div class="error-div" *ngIf="form.get('cityDescription')?.invalid && form.get('cityDescription')?.touched">
-        Описание не может быть пустым!
+        *Заполните поле
       </div>
     </div>
     <div class="div-link">
-      <label for="cityLink">Ссылка на страницу</label>
+      <label for="cityLink">Ссылка на картинку</label>
       <input type="text" formControlName="cityLink" required>
       <div class="error-div" *ngIf="form.get('cityLink')?.invalid && form.get('cityLink')?.touched">
-        Картинка не может быть пустой!
+        *Заполните поле
       </div>
     </div>
     <div class="btn_div-submit">
