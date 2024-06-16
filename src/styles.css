@@ -9,7 +9,9 @@
 
   /* Шрифты */
   --font-primary: "Roboto", "Arial", sans-serif;
-  --text-primary-size: 0.8125rem; /* 13px */
+  --text-primary-size: 1rem; /* 16px */
+  --text-secondary-size: 0.875rem; /* 14px */
+  --text-title-size: 1.75rem; /* 28px */
 
   /* Границы */
   --border-normal: 0.0625rem solid #c4c7d1;
@@ -24,9 +26,19 @@
   --button-margin-normal: 0.75rem; /* 12px */
   --input-margin-normal: 0.75rem; /* 12px */
 
+  --margin-large: 1.5rem; /* 24px */
+  --margin-normal: 0.75rem; /* 12px */
+  --margin-medium: 0.50rem; /* 4px */
+  --margin-small: 0.250rem; /* 4px */
+
   /* Внутрение отступы */
   --button-padding-normal: 0.75rem; /* 12px */
+  --button-padding-small: 0.75rem; /* 12px */
   --input-padding-normal: 0.250rem; /* 4px */
+
+  --padding-large: 1.5rem; /* 24px */
+  --padding-normal: 0.75rem; /* 12px */
+  --padding-small: 0.250rem; /* 4px */
 
   /* Закругления */
   --input-corner-min: 0.125rem; /* 2px */
@@ -36,13 +48,39 @@
   --button-height-normal: 2.25rem; /* 36px */
   --button-width-normal: 2.5rem; /* 40px */
   --input-width-normal: 7.5rem; /* 120px */
+  --input-width-max: 70.9375rem; /* 1135px */
 }
 
 body{
   background-color: var(--background-color);
   font-family: var(--font-primary);
   color: var(--primary-text-color);
+  margin: 0;
+  padding: 0;
 }
+
+h1{
+  font-family: var(--font-primary);
+  font-size: var(--text-title-size);
+  color: var(--primary-text-color);
+}
+
+h2{
+  font-family: var(--font-primary);
+  font-size: var(--text-primary-size);
+  color: var(--primary-text-color);
+}
+
+header{
+  background-color: var(--accent-color);
+  padding: var(--padding-large);
+  align-items: left;
+  font-family: var(--font-primary);
+  color: var(--primary-text-color);
+  font-size: var(--text-title-size);
+}
+
+/*Поля ввода*/
 
 input:focus{
   border: var(--border-active);
@@ -50,16 +88,19 @@ input:focus{
 
 input{
   outline: none;
-  margin-top: var(--input-margin-normal);
-  margin-left: var(--input-margin-normal);
   padding: var(--input-padding-normal);
   min-width: var(--input-width-normal);
+  max-width: var(--input-width-max);
+  box-sizing: border-box;
+  width: 100%;
   border: var(--border-normal);
   font-family: var(--font-primary);
-  font-size: var(--text-input-size);
+  font-size: var(--text-secondary-size);
   color: var(--primary-text-color);
   border-radius: var(--input-corner-min);
 }
+
+/*Кнопки*/
 
 button:hover {
   background-color: #f2f5fa;
@@ -67,7 +108,7 @@ button:hover {
 }
 
 button:focus {
-  background-color: #d3d4db;
+  background-color: var(--background-color);
   border: var(--border-active);
 }
 
@@ -78,16 +119,14 @@ button:active {
 
 button {
   outline: none;
-  margin-top: var(--button-margin-normal);
-  margin-left: var(--button-margin-normal);
-  padding: var(--button-padding-normal);
+  padding: var(--button-padding-small) var(--button-padding-normal);
   min-width: var(--button-width-normal);
   min-height: var(--button-height-normal);
   background-color: var(--background-color);
   color: var(--primary-text-color);
   border: var(--border-normal);
   font-family: var(--font-primary);
-  font-size: var(--text-primary-size);
+  font-size: var(--text-secondary-size);
   display: flex;
   align-items: center;
   border-radius: var(--button-corner-min);
@@ -100,7 +139,7 @@ button {
 }
 
 .button-accent:focus{
-  background-color: #167180;
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   border: var(--border-accent-active);
 }
