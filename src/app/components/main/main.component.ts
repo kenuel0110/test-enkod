@@ -32,7 +32,6 @@ export class MainComponent {
         snapshot.forEach((childSnapshot) => {
           this.cities.push(childSnapshot.val());
         });
-        console.log(this.cities);
       } else {
         console.log("Данные не найдены");
         alert("Данные не найдены");
@@ -49,8 +48,10 @@ export class MainComponent {
 
   toggleFavorite(city: City) {
     city.isFavorite = !city.isFavorite;
-    const cityRef = ref(this.db, `cities/${city.id}`);
-    update(cityRef, { isFavorite: city.isFavorite });
+    if (city.id != undefined) {
+      const cityRef = ref(this.db, `cities/${city.id}`);
+      update(cityRef, { isFavorite: city.isFavorite });
+    }
   }
   goToPage(): void {
     this.router.navigate(['/new']);
