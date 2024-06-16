@@ -1,10 +1,11 @@
-import { initializeApp } from '@angular/fire/app';
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { Database, getDatabase, ref, child, get, set } from "firebase/database";
+import { Database, getDatabase, child, set, ref, update, get} from '@angular/fire/database';
+
+import { environment } from'../../../../environments/environment';
 
 interface City {
   title: string;
@@ -47,13 +48,18 @@ export class CreateNewComponent {
       console.log(city);
       if (city != null)
         {
-          get(child(ref(getDatabase()), `cities`)).then((snapshot) => {
+          get(child(ref(this.db), `cities`)).then((snapshot) => {
             if (snapshot.exists()) {
               console.log(snapshot.val());
               set(ref(this.db, 'cities/' + snapshot.size), city);
               alert("Город добавлен");
+              this.router.navigate(['/']);
             } else {
               console.log("Данные не найдены");
+              console.log(snapshot.val());
+              set(ref(this.db, 'cities/' + snapshot.size), city);
+              alert("Город добавлен");
+              this.router.navigate(['/']);
             }
           }).catch((error) => {
             console.error(error);
