@@ -57,7 +57,13 @@ export class CreateNewComponent {
             } else {
               console.log("Данные не найдены");
               console.log(snapshot.val());
-              set(ref(this.db, 'cities/' + snapshot.size), city);
+              set(ref(this.db, 'cities/' + snapshot.size), {
+                title: city.title,
+                description: city.description,
+                image: city.image,
+                isFavorite: city.isFavorite,
+                id: snapshot.size
+              });
               alert("Город добавлен");
               this.router.navigate(['/']);
             }
