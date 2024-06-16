@@ -51,6 +51,12 @@
   --input-width-max: 70.9375rem; /* 1135px */
 }
 
+::-webkit-scrollbar{width:16px;height:16px !important}
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {height:0px;display:block;background-color:transparent !important}
+::-webkit-scrollbar-track-piece {background-color:var(--accent-color) !important}
+::-webkit-scrollbar-thumb:vertical{height:50px;background-color:#c1c3c7; border:2px solid #c1c3c7 !important}
+
 body{
   background-color: var(--background-color);
   font-family: var(--font-primary);

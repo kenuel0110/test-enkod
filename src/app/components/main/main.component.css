@@ -92,7 +92,13 @@
   gap: 0px;
   width: 100%;
   border-radius: 1rem;
+  transition: box-shadow 0.3s;
 }
+
+.grid-item:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+}
+
 
 .grid-item > div{
   padding: 0px;
@@ -145,6 +151,14 @@
   height: 100%;
   padding: 0px;
   gap: 5px;
+}
+
+.list-item{
+  transition: box-shadow 0.3s;
+}
+
+.list-item:hover {
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
 }
 
 .item-list-image{
